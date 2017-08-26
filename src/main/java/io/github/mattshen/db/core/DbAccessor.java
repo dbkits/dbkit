@@ -1,7 +1,8 @@
 package io.github.mattshen.db.core;
 
 
-import io.github.mattshen.db.core.utils.PropertiesHolder;
+import io.github.mattshen.db.core.config.Constants;
+import io.github.mattshen.db.core.config.PropertiesHolder;
 import io.github.mattshen.db.core.utils.ResultSetExtractor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,13 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-public class DBI {
+public class DbAccessor {
 
-    private static Logger LOG = LoggerFactory.getLogger(DBI.class);
+    private static Logger LOG = LoggerFactory.getLogger(DbAccessor.class);
 
     private Connection conn = null;
 
-    private DBI() {
+    private DbAccessor() {
     }
 
     public void connect() throws Exception {
@@ -53,10 +54,10 @@ public class DBI {
     }
 
     private static class SingletonHelper {
-        private static final DBI INSTANCE = new DBI();
+        private static final DbAccessor INSTANCE = new DbAccessor();
     }
 
-    public static DBI getInstance() {
+    public static DbAccessor getInstance() {
         return SingletonHelper.INSTANCE;
     }
 

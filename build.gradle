@@ -2,14 +2,14 @@
 apply plugin: 'java'
 apply plugin: 'application'
 apply plugin: 'idea'
-mainClassName = 'io.github.mattshen.db.core.Main'
+mainClassName = 'io.github.mattshen.db.core.CLI'
 
 version = '0.1.0-SNAPSHOT'
 sourceCompatibility = 1.8
 
 jar {
   manifest {
-    attributes 'Main-Class': 'io.github.mattshen.db.core.Main'
+    attributes 'Main-Class': 'io.github.mattshen.db.core.CLI'
   }
   baseName = 'db-core'
 }
