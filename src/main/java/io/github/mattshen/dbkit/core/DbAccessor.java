@@ -40,18 +40,42 @@ public class DbAccessor {
         conn.close();
     }
 
-    public <T> List<T> query(String sql,
-                             ResultSetExtractor<T> extractor) throws SQLException {
+    private <T> List<T> convertResultSetToList(ResultSet rs, ResultSetExtractor<T> extractor) throws SQLException {
         List<T> list = new ArrayList<T>();
-        try (Statement s = conn.createStatement();
-             ResultSet rs = s.executeQuery(sql)) {
-
-            while (rs.next()) {
-                list.add(extractor.extract(rs));
-            }
+        while (rs.next()) {
+            list.add(extractor.extract(rs));
         }
         return list;
     }
+
+    public <T> List<T> query(String sql,
+                             ResultSetExtractor<T> extractor) throws SQLException {
+        try (Statement s = conn.createStatement();
+             ResultSet rs = s.executeQuery(sql)) {
+            return convertResultSetToList(rs, extractor);
+        }
+    }
+
+    public <T> List<T> getSchemas(ResultSetExtractor<T> extractor) throws SQLException {
+        try (ResultSet rs = conn.getMetaData().getSchemas()){
+            return convertResultSetToList(rs, extractor);
+        }
+    }
+
+    public <T> List<T> getCatalogs(ResultSetExtractor<T> extractor) throws SQLException {
+        try (ResultSet rs = conn.getMetaData().getCatalogs()){
+            return convertResultSetToList(rs, extractor);
+        }
+    }
+
+    public <T> List<T> getTables(ResultSetExtractor extractor) throws SQLException {
+        String currentCatalog = conn.getCatalog();
+        String currentSchema = conn.getSchema();
+        try (ResultSet rs = conn.getMetaData().getTables(currentCatalog, currentSchema, "%", null)) {
+            return convertResultSetToList(rs, extractor);
+        }
+    }
+
 
     private static class SingletonHelper {
         private static final DbAccessor INSTANCE = new DbAccessor();
