@@ -1,9 +1,9 @@
-package io.github.mattshen.db.core;
+package io.github.mattshen.dbkit.core;
 
 
-import io.github.mattshen.db.core.config.Constants;
-import io.github.mattshen.db.core.config.PropertiesHolder;
-import io.github.mattshen.db.core.utils.ResultSetExtractor;
+import io.github.mattshen.dbkit.core.config.Constants;
+import io.github.mattshen.dbkit.core.config.PropertiesHolder;
+import io.github.mattshen.dbkit.core.utils.ResultSetExtractor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

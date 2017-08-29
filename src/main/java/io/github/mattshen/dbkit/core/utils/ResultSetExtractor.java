@@ -1,4 +1,4 @@
-package io.github.mattshen.db.core.utils;
+package io.github.mattshen.dbkit.core.utils;
 
 
 import java.sql.ResultSet;

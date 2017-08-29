@@ -1,4 +1,4 @@
-package io.github.mattshen.db.core;
+package io.github.mattshen.dbkit.core;
 
 import java.util.List;
 

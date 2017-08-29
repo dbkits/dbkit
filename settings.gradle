@@ -15,4 +15,4 @@ include 'api'
 include 'services:webservice'
 */
 
-rootProject.name = 'db-core'
+rootProject.name = 'db-kit'

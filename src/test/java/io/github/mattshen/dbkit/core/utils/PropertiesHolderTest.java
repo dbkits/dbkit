@@ -1,7 +1,7 @@
-package io.github.mattshen.db.core.utils;
+package io.github.mattshen.dbkit.core.utils;
 
 
-import io.github.mattshen.db.core.config.PropertiesHolder;
+import io.github.mattshen.dbkit.core.config.PropertiesHolder;
 import org.junit.Assert;
 import org.junit.Test;
 
