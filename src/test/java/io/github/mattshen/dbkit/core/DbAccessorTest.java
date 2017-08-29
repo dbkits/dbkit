@@ -43,14 +43,12 @@ public class DbAccessorTest {
     @Test
     public void get_catalogs_should_work() throws Exception {
         List<Map<String, Object>> catalogs = dbAccessor.getCatalogs(JdbcUtils::extractToMap);
-        System.out.println(catalogs);
         Assert.assertTrue(catalogs.size() > 0);
     }
 
     @Test
     public void get_tables_should_work() throws Exception {
         List<Object> tables = dbAccessor.getTables(JdbcUtils::extractToMap);
-        tables.forEach(System.out::println);
         Assert.assertTrue(tables.size() > 0);
     }
 
