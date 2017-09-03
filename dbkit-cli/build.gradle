@@ -21,6 +21,7 @@ repositories {
 dependencies {
     compile 'org.slf4j:slf4j-api:1.7.24'
     compile 'org.slf4j:slf4j-simple:1.7.24'
+    compile 'net.sf.jopt-simple:jopt-simple:6.0-alpha-2'
 
     compile project(':dbkit-core')
 

@@ -1,6 +1,11 @@
 package io.github.mattshen.dbkit.cli;
 
+import io.github.mattshen.dbkit.cli.utils.IOUtils;
 import io.github.mattshen.dbkit.core.*;
+import joptsimple.OptionParser;
+import joptsimple.OptionSet;
+
+import java.util.Arrays;
 import java.util.List;
 
 public class Main {
@@ -8,13 +13,15 @@ public class Main {
   public static void main(String[] args) throws Exception {
     System.out.println("hello cli");
 
-    DbAccessor dbAccessor = DbAccessor.getInstance();
-    dbAccessor.connect();
+    System.out.println("args=" + IOUtils.join(args, ","));
 
-    List<String> result = dbAccessor.query("select 1", rs -> rs.getString(1));
-    System.out.println("result: " + result.get(0));
+    OptionParser parser = new OptionParser("h:u:p:t:");
+    OptionSet options = parser.parse(args);
 
-    dbAccessor.close();
+    System.out.println(options.valueOf("h"));
+    System.out.println(options.valueOf("u"));
+    System.out.println(options.valueOf("p"));
+    System.out.println(options.valueOf("t"));
 
   }
 
