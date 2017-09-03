@@ -15,11 +15,11 @@ include 'api'
 include 'services:webservice'
 */
 
-rootProject.name = 'dbkit-all'
+rootProject.name = 'dbkit'
 
 
 include ':dbkit-core'
 include ':dbkit-cli'
 
-project(':dbkit-core').projectDir = new File(settingsDir, '../dbkit-core')
-project(':dbkit-cli').projectDir = new File(settingsDir, '../dbkit-cli')
+project(':dbkit-core').projectDir = new File(settingsDir, './dbkit-core')
+project(':dbkit-cli').projectDir = new File(settingsDir, './dbkit-cli')
