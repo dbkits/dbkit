@@ -17,7 +17,7 @@ dependencies {
     compile 'org.slf4j:slf4j-api:1.7.24'
     compile 'org.slf4j:slf4j-simple:1.7.24'
 
-    runtime 'mysql:mysql-connector-java:5.1.43'
+    testRuntime 'mysql:mysql-connector-java:5.1.43'
 
     testCompile 'junit:junit:4.12'
 }

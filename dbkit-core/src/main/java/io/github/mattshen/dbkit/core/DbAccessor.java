@@ -1,8 +1,7 @@
 package io.github.mattshen.dbkit.core;
 
 
-import io.github.mattshen.dbkit.core.config.Constants;
-import io.github.mattshen.dbkit.core.config.PropertiesHolder;
+import io.github.mattshen.dbkit.core.models.Config;
 import io.github.mattshen.dbkit.core.utils.ResultSetExtractor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 public class DbAccessor {
 
@@ -21,19 +19,9 @@ public class DbAccessor {
     private DbAccessor() {
     }
 
-    public void connect() throws Exception {
-
-        PropertiesHolder.loadConfig();
-        Properties props = PropertiesHolder.getProps();
-
-        Class.forName(props.getProperty(Constants.PROPERTIES_NAME_CLASSNAME));
-
-        String url = props.getProperty(Constants.PROPERTIES_NAME_URL);
-        String username = props.getProperty(Constants.PROPERTIES_NAME_USERNAME);
-        String password = props.getProperty(Constants.PROPERTIES_NAME_PASSWORD);
-
-        conn = DriverManager.getConnection(url, username, password);
-
+    public void connect(Config cfg) throws Exception {
+        Class.forName(cfg.getDriverClassName());
+        conn = DriverManager.getConnection(cfg.getUrl(), cfg.getUsername(), cfg.getPassword());
     }
 
     public void close() throws SQLException {

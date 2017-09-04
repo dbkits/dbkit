@@ -1,4 +1,4 @@
-package io.github.mattshen.dbkit.core.config;
+package io.github.mattshen.dbkit.cli.config;
 
 public class Constants {
 

@@ -1,4 +1,4 @@
-package io.github.mattshen.dbkit.core.config;
+package io.github.mattshen.dbkit.cli.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,6 +1,7 @@
 package io.github.mattshen.dbkit.core;
 
 
+import io.github.mattshen.dbkit.core.models.Config;
 import io.github.mattshen.dbkit.core.utils.JdbcUtils;
 import io.github.mattshen.dbkit.core.utils.ResultSetExtractor;
 import org.junit.AfterClass;
@@ -18,8 +19,10 @@ public class DbAccessorTest {
 
     @BeforeClass
     public static void setUp() throws Exception {
+
+        Config cfg = new Config("com.mysql.jdbc.Driver", "jdbc:mysql://localhost:3306/awtest", "root", "");
         dbAccessor = DbAccessor.getInstance();
-        dbAccessor.connect();
+        dbAccessor.connect(cfg);
     }
 
     @AfterClass
