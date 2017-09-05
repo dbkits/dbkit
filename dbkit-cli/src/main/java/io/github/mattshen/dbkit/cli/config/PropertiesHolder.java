@@ -3,9 +3,8 @@ package io.github.mattshen.dbkit.cli.config;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 
@@ -15,13 +14,9 @@ public class PropertiesHolder {
 
     private static Properties props = null;
 
-    private static File getFileClassPath(String path) {
-        ClassLoader classLoader = PropertiesHolder.class.getClassLoader();
-        return new File(classLoader.getResource(path).getFile());
-    }
-
     public static void loadConfig() {
-        try (FileInputStream input = new FileInputStream(getFileClassPath("jdbc.properties"))) {
+        ClassLoader classLoader = PropertiesHolder.class.getClassLoader();
+        try (InputStream input = classLoader.getResourceAsStream("jdbc.properties")) {
             Properties tmp = new Properties();
             tmp.load(input);
             props = tmp;
