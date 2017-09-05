@@ -1,14 +1,14 @@
 
 apply plugin: 'java'
 apply plugin: 'application'
-mainClassName = 'io.github.mattshen.dbkit.cli.Main'
+mainClassName = 'io.github.mattshen.dbkit.cli.Application'
 
 version = '0.1.0-SNAPSHOT'
 sourceCompatibility = 1.8
 
 jar {
   manifest {
-    attributes 'Main-Class': 'io.github.mattshen.dbkit.cli.Main'
+    attributes 'Main-Class': 'io.github.mattshen.dbkit.cli.Application'
   }
   baseName = 'dbkit-cli'
 }
@@ -22,6 +22,8 @@ dependencies {
     compile 'org.slf4j:slf4j-api:1.7.24'
     compile 'org.slf4j:slf4j-simple:1.7.24'
     compile 'net.sf.jopt-simple:jopt-simple:6.0-alpha-2'
+
+    runtime 'mysql:mysql-connector-java:5.1.43'
 
     compile project(':dbkit-core')
 
