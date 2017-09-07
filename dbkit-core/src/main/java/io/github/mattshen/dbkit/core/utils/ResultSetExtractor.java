@@ -12,6 +12,4 @@ import java.util.Map;
 @FunctionalInterface
 public interface ResultSetExtractor<T> {
     T extract(ResultSet rs) throws SQLException;
-
-
 }

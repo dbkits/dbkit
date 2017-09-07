@@ -19,7 +19,7 @@ public class Application {
                 openInteractiveUI();
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Console.error(e.getMessage(), e);
             System.exit(1);
         }
 

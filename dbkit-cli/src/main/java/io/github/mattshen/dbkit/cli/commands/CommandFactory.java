@@ -3,13 +3,17 @@ package io.github.mattshen.dbkit.cli.commands;
 import io.github.mattshen.dbkit.cli.config.Constants;
 import io.github.mattshen.dbkit.cli.config.PropertiesHolder;
 import io.github.mattshen.dbkit.cli.utils.Console;
+import io.github.mattshen.dbkit.cli.utils.Utils;
 import io.github.mattshen.dbkit.core.DbAccessor;
 import io.github.mattshen.dbkit.core.models.Config;
 import io.github.mattshen.dbkit.core.utils.JdbcUtils;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class CommandFactory {
 
@@ -27,10 +31,23 @@ public class CommandFactory {
 
     private void defaultCommand(String name) {
         try {
-            List<Object> tables = dbAccessor.query(name, JdbcUtils::extractToMap);
-            tables.stream().forEach(t -> {
-                Console.log(t.toString());
-            });
+            List<Map<String, Object>> rows = dbAccessor.query(name, JdbcUtils::extractToMap);
+
+            if (rows.size() > 0) {
+                String format = Utils.resolveRowPrintFormat(rows);
+
+                String headers = String.format(format, rows.get(0).keySet().toArray());
+                String splitter = IntStream.range(0, headers.length()).mapToObj(o -> "-").collect(Collectors.joining());
+
+                Console.log(headers);
+                Console.log(splitter);
+
+                rows.stream().forEach(row -> {
+                    Console.log(String.format(format, row.values().toArray()));
+                });
+            } else {
+                Console.log("No Result!");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -54,7 +71,7 @@ public class CommandFactory {
         //command definitions
         cf.addCommand("show tables", () -> {
             try {
-                List<Object> tables = dbAccessor.getTables(JdbcUtils::extractToMap);
+                List<Map> tables = dbAccessor.getTables(JdbcUtils::extractToMap);
                 tables.stream().forEach(t -> {
                     Console.log(t.toString());
                 });
@@ -63,7 +80,7 @@ public class CommandFactory {
             }
         });
 
-        cf.addCommand(".exit", () -> {
+        cf.addCommand("\\exit", () -> {
             System.exit(0);
         });
 
