@@ -4,19 +4,19 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.stream.Stream;
 
-public class FlexibleConfigKeeper {
+public class ConfigKeeper {
 
     private Map<String, Object> config = Collections.unmodifiableMap(Collections.emptyMap());
 
-    private FlexibleConfigKeeper() {
+    private ConfigKeeper() {
     }
 
     private static class SingletonHelper {
-        private static final FlexibleConfigKeeper INSTANCE = new FlexibleConfigKeeper();
+        private static final ConfigKeeper INSTANCE = new ConfigKeeper();
     }
 
-    public static FlexibleConfigKeeper getInstance() {
-        return FlexibleConfigKeeper.SingletonHelper.INSTANCE;
+    public static ConfigKeeper getInstance() {
+        return ConfigKeeper.SingletonHelper.INSTANCE;
     }
 
     public Map<String, Object> getConfig() {
@@ -29,7 +29,7 @@ public class FlexibleConfigKeeper {
 
     /*
      * Get value from a nested Map using dot-notation-like syntax,
-     * e.g. ["profile", "mysql", "datasource.username"]
+     * e.g. ["profiles", "mysql", "username"]
      * @param path dot notation path
      * @return one of the three: null, simple value or partial config
      */

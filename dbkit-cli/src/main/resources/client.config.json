@@ -2,13 +2,13 @@
   "outputStyle": "column",
   "profiles": {
     "mysql": {
-      "url": "jdbc:mysql://localhost:3306/awtest",
+      "url": "jdbc:mysql://localhost:3306/mysql",
       "username": "root",
       "password": "",
       "driverClassName": "com.mysql.jdbc.Driver"
     },
     "postgres": {
-      "url": "jdbc:mysql://localhost:3306/awtest",
+      "url": "jdbc:mysql://localhost:3306/test",
       "username": "root",
       "password": "",
       "password": "com.mysql.jdbc.Driver"

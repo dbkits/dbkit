@@ -1,6 +1,6 @@
 package io.github.mattshen.dbkit.cli.config.config;
 
-import io.github.mattshen.dbkit.cli.config.FlexibleConfigKeeper;
+import io.github.mattshen.dbkit.cli.config.ConfigKeeper;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,13 +9,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class FlexibleConfigKeeperTest {
+public class ConfigKeeperTest {
 
-    private FlexibleConfigKeeper clientCfg;
+    private ConfigKeeper clientCfg;
 
     @Before
     public void setUp() {
-        clientCfg = FlexibleConfigKeeper.getInstance();
+        clientCfg = ConfigKeeper.getInstance();
     }
 
 
