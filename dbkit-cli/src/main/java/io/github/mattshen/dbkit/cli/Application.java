@@ -2,6 +2,7 @@ package io.github.mattshen.dbkit.cli;
 
 import io.github.mattshen.dbkit.cli.commands.CommandFactory;
 import io.github.mattshen.dbkit.cli.ui.CliOptions;
+import io.github.mattshen.dbkit.cli.ui.Prompt;
 import io.github.mattshen.dbkit.cli.utils.Console;
 
 import java.util.Scanner;
@@ -27,12 +28,12 @@ public class Application {
 
     private static void openInteractiveUI() {
         Scanner sc = new Scanner(System.in);
-        System.out.print("dbkit>");
+        Prompt.print();
         while (sc.hasNextLine()) {
             String input = sc.nextLine();
             Console.log("Your command is " + input);
             cf.executeCommand(input);
-            System.out.print("dbkit>");
+            Prompt.print();
         }
     }
 
