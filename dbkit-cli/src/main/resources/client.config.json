@@ -1,0 +1,17 @@
+{
+  "outputStyle": "column",
+  "profiles": {
+    "mysql": {
+      "url": "jdbc:mysql://localhost:3306/awtest",
+      "username": "root",
+      "password": "",
+      "driverClassName": "com.mysql.jdbc.Driver"
+    },
+    "postgres": {
+      "url": "jdbc:mysql://localhost:3306/awtest",
+      "username": "root",
+      "password": "",
+      "password": "com.mysql.jdbc.Driver"
+    }
+  }
+}

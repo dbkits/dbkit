@@ -1,7 +1,7 @@
 package io.github.mattshen.dbkit.cli.commands;
 
-import io.github.mattshen.dbkit.cli.config.Constants;
-import io.github.mattshen.dbkit.cli.config.PropertiesHolder;
+import io.github.mattshen.dbkit.cli.config.ClientConfig;
+import io.github.mattshen.dbkit.cli.config.Profile;
 import io.github.mattshen.dbkit.cli.utils.Console;
 import io.github.mattshen.dbkit.cli.utils.Utils;
 import io.github.mattshen.dbkit.core.DbAccessor;
@@ -11,7 +11,6 @@ import io.github.mattshen.dbkit.core.utils.JdbcUtils;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -88,15 +87,15 @@ public class CommandFactory {
     }
 
     private static void connectDatabase(DbAccessor dbAccessor) throws Exception {
-        PropertiesHolder.loadConfig();
-        Properties props = PropertiesHolder.getProps();
+
+        ClientConfig config = ClientConfig.load();
+        Profile profile = config.getDefaultProfile();
         Config cfg = new Config(
-                props.getProperty(Constants.PROPERTIES_NAME_CLASSNAME),
-                props.getProperty(Constants.PROPERTIES_NAME_URL),
-                props.getProperty(Constants.PROPERTIES_NAME_USERNAME),
-                props.getProperty(Constants.PROPERTIES_NAME_PASSWORD)
+            profile.getDriverClassName(),
+            profile.getUrl(),
+            profile.getUsername(),
+            profile.getPassword()
         );
         dbAccessor.connect(cfg);
     }
-
 }

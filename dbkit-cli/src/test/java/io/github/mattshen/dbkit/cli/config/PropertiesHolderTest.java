@@ -1,7 +1,6 @@
 package io.github.mattshen.dbkit.cli.config;
 
 
-import io.github.mattshen.dbkit.cli.config.PropertiesHolder;
 import org.junit.Assert;
 import org.junit.Test;
 

@@ -1,9 +1,6 @@
 package io.github.mattshen.dbkit.cli.utils;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Utils {
@@ -16,7 +13,7 @@ public class Utils {
 
     public static String resolveRowPrintFormat(List<Map<String, Object>> rows) {
         if (rows.size() > 0) {
-            Map<String, Integer> columnSizeSetting = new HashMap<>();
+            Map<String, Integer> columnSizeSetting = new LinkedHashMap<>();
             rows.forEach(row -> {
                 row.entrySet().forEach(entry -> {
                     String key = String.valueOf(entry.getKey());
