@@ -23,8 +23,6 @@ public class DbAccessor {
         if (conn == null || conn.isClosed()) {
             Class.forName(cfg.getDriverClassName());
             conn = DriverManager.getConnection(cfg.getUrl(), cfg.getUsername(), cfg.getPassword());
-        } else {
-            System.out.println("Current connect is still valid");
         }
     }
 

@@ -8,10 +8,10 @@
       "driverClassName": "com.mysql.jdbc.Driver"
     },
     "postgres": {
-      "url": "jdbc:mysql://localhost:3306/test",
-      "username": "root",
+      "url": "jdbc:postgresql://host/database",
+      "username": "postgres",
       "password": "",
-      "password": "com.mysql.jdbc.Driver"
+      "password": "org.postgresql.Driver "
     }
   }
 }

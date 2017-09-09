@@ -1,6 +1,7 @@
-package io.github.mattshen.dbkit.cli.commands;
+package io.github.mattshen.dbkit.cli.commands.definitions;
 
 import io.github.mattshen.dbkit.cli.Application;
+import io.github.mattshen.dbkit.cli.commands.Command;
 import io.github.mattshen.dbkit.cli.utils.Console;
 
 import java.io.File;
@@ -17,6 +18,7 @@ public class InitClientCommand implements Command {
             ClassLoader cl = Application.class.getClassLoader();
             InputStream is = cl.getResourceAsStream("client.config.json");
             Files.copy(is, new File("./dbkit.config.json").toPath(), StandardCopyOption.REPLACE_EXISTING);
+            Console.log("File \"dbkit.config.json\" created in current working folder");
         } catch (IOException e) {
             Console.error("Failed to create config file", e);
         }

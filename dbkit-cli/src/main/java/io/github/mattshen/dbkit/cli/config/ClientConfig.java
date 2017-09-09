@@ -6,26 +6,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.util.Map;
 
-/*
- {
-  "outputStyle": "column",
-  "profiles": {
-    "mysql": {
-      "default": true,
-      "datasource.url": "jdbc:mysql://localhost:3306/awtest",
-      "datasource.username": "root",
-      "datasource.password": "",
-      "datasource.driver-class-name": "com.mysql.jdbc.Driver"
-    },
-    "postgres": {
-      "datasource.url": "jdbc:mysql://localhost:3306/awtest",
-      "datasource.username": "root",
-      "datasource.password": "",
-      "datasource.driver-class-name": "com.mysql.jdbc.Driver"
-    }
-  }
-}
- */
 public class ClientConfig {
 
     private String outputStyle;
