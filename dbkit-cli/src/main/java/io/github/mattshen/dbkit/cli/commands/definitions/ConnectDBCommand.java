@@ -18,7 +18,7 @@ public class ConnectDBCommand implements Command {
         }
     }
 
-    private static void connectDatabase(DbAccessor dbAccessor) throws Exception {
+    private void connectDatabase(DbAccessor dbAccessor) throws Exception {
         ClientConfig config = ClientConfig.load();
         Profile profile = config.getDefaultProfile();
         Config cfg = new Config(

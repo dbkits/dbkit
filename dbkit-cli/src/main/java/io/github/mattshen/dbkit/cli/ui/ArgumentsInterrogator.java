@@ -10,14 +10,14 @@ import static java.io.File.pathSeparatorChar;
 import static java.util.Arrays.asList;
 
 
-public class ArgumentsInterpreter {
+public class ArgumentsInterrogator {
 
     private static final String optionSpecs = "i";
     private OptionSet options = null;
     private static OptionParser parser = null;
 
-    public static ArgumentsInterpreter parse(String[] args) {
-        final ArgumentsInterpreter argumentsInterpreter = new ArgumentsInterpreter();
+    public static ArgumentsInterrogator parse(String[] args) {
+        final ArgumentsInterrogator argumentsInterrogator = new ArgumentsInterrogator();
 
         parser = new OptionParser();
 
@@ -30,8 +30,8 @@ public class ArgumentsInterpreter {
                 .ofType(File.class)
                 .withValuesSeparatedBy(pathSeparatorChar);
 
-        argumentsInterpreter.options = parser.parse(args);
-        return argumentsInterpreter;
+        argumentsInterrogator.options = parser.parse(args);
+        return argumentsInterrogator;
     }
 
 
