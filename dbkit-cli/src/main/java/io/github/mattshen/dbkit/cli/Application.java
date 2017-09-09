@@ -1,5 +1,6 @@
 package io.github.mattshen.dbkit.cli;
 
+import io.github.mattshen.dbkit.cli.commands.CommandDefs;
 import io.github.mattshen.dbkit.cli.commands.CommandFactory;
 import io.github.mattshen.dbkit.cli.ui.ArgumentsInterpreter;
 import io.github.mattshen.dbkit.cli.ui.Prompt;
@@ -23,6 +24,7 @@ public class Application {
             } else if (interpreter.isInitClient()) {
                 cf.executeCommand("\\init");
             } else if (interpreter.isInteractive()) {
+                cf.executeCommand(CommandDefs.CONNECT);
                 openInteractiveUI();
             }
 

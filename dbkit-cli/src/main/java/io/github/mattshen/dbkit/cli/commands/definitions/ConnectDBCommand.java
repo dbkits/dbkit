@@ -28,5 +28,6 @@ public class ConnectDBCommand implements Command {
                 profile.getPassword()
         );
         dbAccessor.connect(cfg);
+        Console.log("Connected to " + profile.getUrl());
     }
 }

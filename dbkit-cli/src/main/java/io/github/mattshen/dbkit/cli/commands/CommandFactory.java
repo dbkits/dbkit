@@ -23,4 +23,8 @@ public class CommandFactory {
             cmd.execute();
         }
     }
+
+    public void executeCommand(CommandDefs cmd) {
+        cmd.creator.apply(null).execute();
+    }
 }
