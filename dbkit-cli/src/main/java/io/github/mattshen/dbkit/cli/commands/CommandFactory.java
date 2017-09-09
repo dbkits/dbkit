@@ -19,9 +19,8 @@ public class CommandFactory {
     private final HashMap<String, Command> commands;
     private DbAccessor dbAccessor;
 
-    private CommandFactory(DbAccessor dbAccessor) {
+    private CommandFactory() {
         commands = new HashMap<>();
-        this.dbAccessor = dbAccessor;
     }
 
     public void addCommand(final String name, final Command cmd) {
@@ -60,20 +59,29 @@ public class CommandFactory {
         }
     }
 
-    public static CommandFactory init() throws Exception {
-        final DbAccessor dbAccessor = DbAccessor.getInstance();
-        connectDatabase(dbAccessor);
-
-        final CommandFactory cf = new CommandFactory(dbAccessor);
-
-
+    public static CommandFactory create() throws Exception {
+        final CommandFactory cf = new CommandFactory();
         //command definitions
+
+        cf.addCommand("\\connect", () -> {
+            try {
+                cf.dbAccessor = DbAccessor.getInstance();
+                connectDatabase(cf.dbAccessor);
+
+            } catch (Exception e) {
+                Console.error(e.getMessage(), e);
+            }
+        });
+
+        cf.addCommand("\\init", new InitClientCommand());
+
         cf.addCommand("show tables", () -> {
             try {
-                List<Map> tables = dbAccessor.getTables(JdbcUtils::extractToMap);
+                List<Map> tables = cf.dbAccessor.getTables(JdbcUtils::extractToMap);
                 tables.stream().forEach(t -> {
                     Console.log(t.toString());
                 });
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -87,7 +95,6 @@ public class CommandFactory {
     }
 
     private static void connectDatabase(DbAccessor dbAccessor) throws Exception {
-
         ClientConfig config = ClientConfig.load();
         Profile profile = config.getDefaultProfile();
         Config cfg = new Config(

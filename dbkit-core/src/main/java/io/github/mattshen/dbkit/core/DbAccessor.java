@@ -20,8 +20,12 @@ public class DbAccessor {
     }
 
     public void connect(Config cfg) throws Exception {
-        Class.forName(cfg.getDriverClassName());
-        conn = DriverManager.getConnection(cfg.getUrl(), cfg.getUsername(), cfg.getPassword());
+        if (conn == null || conn.isClosed()) {
+            Class.forName(cfg.getDriverClassName());
+            conn = DriverManager.getConnection(cfg.getUrl(), cfg.getUsername(), cfg.getPassword());
+        } else {
+            System.out.println("Current connect is still valid");
+        }
     }
 
     public void close() throws SQLException {
