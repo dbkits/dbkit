@@ -1,5 +1,6 @@
 {
   "outputStyle": "column",
+  "defaultProfile": "mysql",
   "profiles": {
     "mysql": {
       "url": "jdbc:mysql://localhost:3306/mysql",

@@ -2,6 +2,7 @@ package io.github.mattshen.dbkit.cli.commands.definitions;
 
 import io.github.mattshen.dbkit.cli.commands.Command;
 import io.github.mattshen.dbkit.cli.config.ClientConfig;
+import io.github.mattshen.dbkit.cli.config.ConfigKeeper;
 import io.github.mattshen.dbkit.cli.config.Profile;
 import io.github.mattshen.dbkit.cli.utils.Console;
 import io.github.mattshen.dbkit.core.DbAccessor;
@@ -19,8 +20,8 @@ public class ConnectDBCommand implements Command {
     }
 
     private void connectDatabase(DbAccessor dbAccessor) throws Exception {
-        ClientConfig config = ClientConfig.load();
-        Profile profile = config.getDefaultProfile();
+        ClientConfig config = ConfigKeeper.getInstance().load();
+        Profile profile = config.defaultProfile();
         Config cfg = new Config(
                 profile.getDriverClassName(),
                 profile.getUrl(),

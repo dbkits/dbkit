@@ -4,34 +4,38 @@ package io.github.mattshen.dbkit.cli.config;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 public class ClientConfig {
 
-    private String outputStyle;
-    private Map<String, Profile> profiles;
+    private String outputStyle = "column";
+    private String defaultProfile = "profile1";
+    private Map<String, Profile> profiles = new HashMap<>();
 
-    private ClientConfig() {
-    }
 
     public String getOutputStyle() {
         return outputStyle;
+    }
+
+    public void setOutputStyle(String outputStyle) {
+        this.outputStyle = outputStyle;
     }
 
     public Map<String, Profile> getProfiles() {
         return profiles;
     }
 
-    public Profile getDefaultProfile() {
-        return profiles.get("mysql");
+    public String getDefaultProfile() {
+        return defaultProfile;
     }
 
-    public static ClientConfig load() throws IOException {
-        ClassLoader classLoader = ClientConfig.class.getClassLoader();
-        ClientConfig config = new ObjectMapper().readValue(
-                classLoader.getResourceAsStream("client.config.json"),
-                ClientConfig.class);
-        return config;
+    public void setDefaultProfile(String defaultProfile) {
+        this.defaultProfile = defaultProfile;
+    }
+
+    public Profile defaultProfile() {
+        return profiles.get(this.defaultProfile);
     }
 
 }

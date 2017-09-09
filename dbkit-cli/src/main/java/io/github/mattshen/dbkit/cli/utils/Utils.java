@@ -1,7 +1,13 @@
 package io.github.mattshen.dbkit.cli.utils;
 
-import java.util.*;
+import io.github.mattshen.dbkit.cli.config.Constants;
+
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
+import java.io.File;
 
 public class Utils {
 
@@ -35,6 +41,22 @@ public class Utils {
 
         } else {
             return "";
+        }
+    }
+
+    public static String getConfigFilePath() {
+        return System.getProperty("user.home")
+                        + System.getProperty("file.separator")
+                        + Constants.CONFIG_DIR
+                        + System.getProperty("file.separator")
+                        + Constants.CONFIG_FILE_NAME;
+    }
+
+    public static void createConfigFolder() {
+        String configFolder = System.getProperty("user.home") + System.getProperty("file.separator") + Constants.CONFIG_DIR;
+        File file = new File(configFolder);
+        if (!file.exists()) {
+            file.mkdirs();
         }
     }
 

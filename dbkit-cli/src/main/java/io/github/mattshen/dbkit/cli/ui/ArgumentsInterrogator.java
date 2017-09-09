@@ -27,8 +27,7 @@ public class ArgumentsInterrogator {
 
         parser.acceptsAll(asList("c", "config", "cfg"), "Cli configuration file").withRequiredArg()
                 .describedAs("path")
-                .ofType(File.class)
-                .withValuesSeparatedBy(pathSeparatorChar);
+                .ofType(File.class);
 
         argumentsInterrogator.options = parser.parse(args);
         return argumentsInterrogator;
@@ -52,7 +51,7 @@ public class ArgumentsInterrogator {
     }
 
     public boolean isInitClient() {
-      return options.nonOptionArguments().contains("init");
+      return !options.hasOptions() && options.nonOptionArguments().contains("init");
     }
 
 }

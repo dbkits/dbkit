@@ -1,5 +1,10 @@
 package io.github.mattshen.dbkit.cli.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import io.github.mattshen.dbkit.cli.utils.Utils;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
 import java.util.stream.Stream;
@@ -44,6 +49,14 @@ public class ConfigKeeper {
             }
         });
 
+    }
+
+    public ClientConfig load() throws IOException {
+        ClassLoader classLoader = ClientConfig.class.getClassLoader();
+        ClientConfig config = new ObjectMapper().readValue(
+                new File(Utils.getConfigFilePath()),
+                ClientConfig.class);
+        return config;
     }
 
 }
