@@ -52,7 +52,7 @@ public class InitClientCommand implements Command {
                 try {
                     new ObjectMapper().writerWithDefaultPrettyPrinter()
                             .writeValue(new File(Utils.getConfigFilePath()), cfg);
-                    System.out.print(MessageFormat.format("Config file {0} created", Utils.getConfigFilePath()));
+                    System.out.println(MessageFormat.format("Config file {0} created", Utils.getConfigFilePath()));
                 } catch (IOException e) {
                     Console.error("Failed to create config file", e);
                 }
