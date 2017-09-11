@@ -12,7 +12,7 @@
       "url": "jdbc:postgresql://host/database",
       "username": "postgres",
       "password": "",
-      "password": "org.postgresql.Driver "
+      "driverClassName": "org.postgresql.Driver"
     }
   }
 }

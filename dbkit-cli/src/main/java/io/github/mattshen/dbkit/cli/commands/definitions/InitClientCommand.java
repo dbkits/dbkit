@@ -3,7 +3,6 @@ package io.github.mattshen.dbkit.cli.commands.definitions;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.mattshen.dbkit.cli.commands.Command;
 import io.github.mattshen.dbkit.cli.config.ClientConfig;
-import io.github.mattshen.dbkit.cli.config.Constants;
 import io.github.mattshen.dbkit.cli.config.Profile;
 import io.github.mattshen.dbkit.cli.utils.Console;
 import io.github.mattshen.dbkit.cli.utils.Strings;

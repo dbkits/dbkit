@@ -53,10 +53,9 @@ public class ConfigKeeper {
 
     public ClientConfig load() throws IOException {
         ClassLoader classLoader = ClientConfig.class.getClassLoader();
-        ClientConfig config = new ObjectMapper().readValue(
+        return new ObjectMapper().readValue(
                 new File(Utils.getConfigFilePath()),
                 ClientConfig.class);
-        return config;
     }
 
 }

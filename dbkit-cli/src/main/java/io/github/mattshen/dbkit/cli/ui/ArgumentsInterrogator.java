@@ -6,7 +6,6 @@ import joptsimple.OptionSet;
 import java.io.File;
 import java.io.IOException;
 
-import static java.io.File.pathSeparatorChar;
 import static java.util.Arrays.asList;
 
 

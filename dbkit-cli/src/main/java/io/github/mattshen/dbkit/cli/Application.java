@@ -9,13 +9,11 @@ import io.github.mattshen.dbkit.cli.utils.IOUtils;
 
 public class Application {
 
-    private static CommandFactory cf;
-
     public static void main(String[] args) {
         ArgumentsInterrogator interrogator = ArgumentsInterrogator.parse(args);
 
         try {
-            cf = CommandFactory.create();
+            CommandFactory cf = CommandFactory.create();
 
             if (interrogator.isHelp() && interrogator.hasNoArgs()) {
                 interrogator.printHelp();

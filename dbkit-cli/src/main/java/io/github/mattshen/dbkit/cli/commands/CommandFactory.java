@@ -6,8 +6,7 @@ import io.github.mattshen.dbkit.cli.utils.Strings;
 public class CommandFactory {
 
     public static CommandFactory create() throws Exception {
-        final CommandFactory cf = new CommandFactory();
-        return cf;
+        return new CommandFactory();
     }
 
     public void executeCommand(String s) {

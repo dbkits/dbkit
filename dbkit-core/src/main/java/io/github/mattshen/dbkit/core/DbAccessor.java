@@ -31,7 +31,7 @@ public class DbAccessor {
     }
 
     private <T> List<T> convertResultSetToList(ResultSet rs, ResultSetExtractor<T> extractor) throws SQLException {
-        List<T> list = new ArrayList<T>();
+        List<T> list = new ArrayList<>();
         while (rs.next()) {
             list.add(extractor.extract(rs));
         }

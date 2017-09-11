@@ -3,7 +3,6 @@ package io.github.mattshen.dbkit.core;
 
 import io.github.mattshen.dbkit.core.models.Config;
 import io.github.mattshen.dbkit.core.utils.JdbcUtils;
-import io.github.mattshen.dbkit.core.utils.ResultSetExtractor;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
