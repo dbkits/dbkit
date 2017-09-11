@@ -5,7 +5,7 @@ A simple database cli client for most of the databases via JDBC.
 
 ### Features
 * Support Unix pipeline
-* Support interactive like MySQL's cli client
+* Support interactive mode like MySQL's cli client
 
 
 ### Examples
