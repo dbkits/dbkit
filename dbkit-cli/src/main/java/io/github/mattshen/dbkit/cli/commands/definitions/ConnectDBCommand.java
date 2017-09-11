@@ -16,6 +16,7 @@ public class ConnectDBCommand implements Command {
             connectDatabase(DbAccessor.getInstance());
         } catch (Exception e) {
             Console.error(e.getMessage(), e);
+            System.exit(1);
         }
     }
 
@@ -28,7 +29,9 @@ public class ConnectDBCommand implements Command {
                 profile.getUsername(),
                 profile.getPassword()
         );
+
         dbAccessor.connect(cfg);
+
         Console.log("Connected to " + profile.getUrl());
     }
 }
