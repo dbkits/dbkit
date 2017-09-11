@@ -1,29 +1,45 @@
-# README #
+# DBKit #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+A simple database cli client for most of the databases via JDBC. 
 
-### What is this repository for? ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+### Features
+* Support Unix pipeline
+* Support interactive like MySQL's cli client
 
-### How do I get set up? ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+### Examples
 
-### Contribution guidelines ###
+#### example 1
+```sh
+echo "select 1 + 2 as c1 " | dbkit-cli
+```
 
-* Writing tests
-* Code review
-* Other guidelines
+Result:
+```
+c1 | c2
+-------
+3  | 7 
+```
 
-### Who do I talk to? ###
+#### example 2
+```
+$ dbkit-cli -i
 
-* Repo owner or admin
-* Other community or team contact
+dbkit=>show tables;
+
+Tables_in_xyz         
+-------------------------
+task
+user
+
+dbkit=>desc user;
+
+Field    | Type        | Null | Key | Default | Extra         
+--------------------------------------------------------------
+id       | int(11)     | NO   | PRI | null    | auto_increment
+username | varchar(45) | NO   | UNI | null    |               
+password | varchar(45) | NO   |     | null    |               
+
+
+```
