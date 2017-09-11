@@ -42,25 +42,25 @@ public class JdbcUtils {
             if (value == null) {
                 map.put(column, null);
             } else if (value instanceof Integer) {
-                map.put(column, (Integer) value);
+                map.put(column, value);
             } else if (value instanceof String) {
-                map.put(column, (String) value);
+                map.put(column, value);
             } else if (value instanceof Boolean) {
-                map.put(column, (Boolean) value);
+                map.put(column, value);
             } else if (value instanceof Date) {
                 map.put(column, ((Date) value).getTime());
             } else if (value instanceof Long) {
-                map.put(column, (Long) value);
+                map.put(column, value);
             } else if (value instanceof Double) {
-                map.put(column, (Double) value);
+                map.put(column, value);
             } else if (value instanceof Float) {
-                map.put(column, (Float) value);
+                map.put(column, value);
             } else if (value instanceof BigDecimal) {
-                map.put(column, (BigDecimal) value);
+                map.put(column, value);
             } else if (value instanceof Byte) {
-                map.put(column, (Byte) value);
+                map.put(column, value);
             } else if (value instanceof byte[]) {
-                map.put(column, (byte[]) value);
+                map.put(column, value);
             } else {
                 throw new IllegalArgumentException("Unsupported Type: " + value.getClass());
             }

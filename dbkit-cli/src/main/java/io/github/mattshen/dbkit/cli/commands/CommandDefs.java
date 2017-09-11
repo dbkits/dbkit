@@ -1,9 +1,6 @@
 package io.github.mattshen.dbkit.cli.commands;
 
-import io.github.mattshen.dbkit.cli.commands.definitions.ConnectDBCommand;
-import io.github.mattshen.dbkit.cli.commands.definitions.InitClientCommand;
-import io.github.mattshen.dbkit.cli.commands.definitions.SQLCommand;
-import io.github.mattshen.dbkit.cli.commands.definitions.ShowTablesCommand;
+import io.github.mattshen.dbkit.cli.commands.definitions.*;
 import io.github.mattshen.dbkit.cli.utils.Strings;
 
 import java.util.function.Function;
@@ -17,9 +14,9 @@ public enum CommandDefs {
 
     SHOW_TABLES("show tables", false, params -> new ShowTablesCommand()),
 
-    EXECUTE_SQL("execute_sql", true, params -> new SQLCommand(params)),
+    EXECUTE_SQL("execute_sql", true, SQLCommand::new),
 
-    EXIT("exit", false, params -> () -> System.exit(0));
+    EXIT("exit", false, params -> new ExitCommand());
 
     final String commandName;
     final boolean isSQL;
@@ -38,7 +35,7 @@ public enum CommandDefs {
             return Stream.of(CommandDefs.values())
                     .filter(def -> s.equals(def.commandName))
                     .findFirst()
-                    .orElseGet(() -> CommandDefs.EXECUTE_SQL)
+                    .orElse(CommandDefs.EXECUTE_SQL)
                     .creator.apply(s);
 
         }

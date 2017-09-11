@@ -13,7 +13,7 @@ public class Utils {
 
     public static <T> String join(T[] values, String separator) {
         return Arrays.asList(values)
-                .stream().map(v -> v.toString())
+                .stream().map(Object::toString)
                 .collect(Collectors.joining(separator));
     }
 

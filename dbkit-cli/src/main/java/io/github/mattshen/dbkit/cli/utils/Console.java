@@ -7,9 +7,7 @@ import java.util.stream.Stream;
 public class Console {
 
     public static void log(Object... objs) {
-        Stream.of(objs).forEach(obj -> {
-            System.out.println(obj);
-        });
+        Stream.of(objs).forEach(System.out::println);
     }
 
     public static void error(String message) {

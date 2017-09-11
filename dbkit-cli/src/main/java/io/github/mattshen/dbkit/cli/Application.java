@@ -30,6 +30,8 @@ public class Application {
                 cf.executeCommand(input);
             }
 
+            //cf.executeCommand(CommandDefs.EXIT);
+
         } catch (Exception e) {
             Console.error(e.getMessage(), e);
             System.exit(1);
