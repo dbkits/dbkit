@@ -22,6 +22,9 @@ run {
 repositories {
     //jcenter()
     mavenCentral()
+    maven {
+        url "https://artifacts.alfresco.com/nexus/content/repositories/public/"
+    }
 }
 
 dependencies {
@@ -31,6 +34,7 @@ dependencies {
     compile 'com.fasterxml.jackson.core:jackson-databind:2.8.8'
 
     runtime 'mysql:mysql-connector-java:5.1.43'
+    runtime 'com.ibm.db2.jcc:db2jcc4:10.1'
 
     compile project(':dbkit-core')
 

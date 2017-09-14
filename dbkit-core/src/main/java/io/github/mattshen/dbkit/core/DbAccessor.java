@@ -58,7 +58,15 @@ public class DbAccessor {
         }
     }
 
-    public <T> List<T> getTables(ResultSetExtractor extractor) throws SQLException {
+    public <T> List<T> describeTable(String tableName, ResultSetExtractor<T> extractor) throws SQLException {
+        String currentCatalog = conn.getCatalog();
+        String currentSchema = conn.getSchema();
+        try (ResultSet rs = conn.getMetaData().getColumns(currentCatalog, currentSchema, tableName, "%")) {
+            return convertResultSetToList(rs, extractor);
+        }
+    }
+
+    public <T> List<T> getTables(ResultSetExtractor<T> extractor) throws SQLException {
         String currentCatalog = conn.getCatalog();
         String currentSchema = conn.getSchema();
         try (ResultSet rs = conn.getMetaData().getTables(currentCatalog, currentSchema, "%", null)) {

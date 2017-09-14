@@ -14,6 +14,8 @@ public enum CommandDefs {
 
     SHOW_TABLES("show tables", false, params -> new ShowTablesCommand()),
 
+    DESC_TABLE("desc", false, tableName -> new DescTableCommand(tableName)),
+
     EXECUTE_SQL("execute_sql", true, SQLCommand::new),
 
     EXIT("exit", false, params -> new ExitCommand());

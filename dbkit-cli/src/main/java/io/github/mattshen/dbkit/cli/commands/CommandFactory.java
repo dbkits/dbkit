@@ -14,7 +14,10 @@ public class CommandFactory {
             Console.error("Invalid Command");
         } else {
             Command cmd;
-            if (s.startsWith("\\")) {
+            if (s.startsWith("\\desc ")) {
+                cmd = CommandDefs.DESC_TABLE.creator.apply(s.substring(6));
+            }
+            else if (s.startsWith("\\")) {
                 cmd = CommandDefs.findCommand(s.substring(1));
             } else {
                 cmd = CommandDefs.findCommand(s);
