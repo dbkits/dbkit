@@ -32,7 +32,6 @@ dependencies {
     compile 'org.slf4j:slf4j-simple:1.7.24'
     compile 'net.sf.jopt-simple:jopt-simple:6.0-alpha-2'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.8.8'
-    compile 'org.apache.commons:commons-csv:1.5'
 
     runtime 'mysql:mysql-connector-java:5.1.43'
     runtime 'com.ibm.db2.jcc:db2jcc4:10.1'
