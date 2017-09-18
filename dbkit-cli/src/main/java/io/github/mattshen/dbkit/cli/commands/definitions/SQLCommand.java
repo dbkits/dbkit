@@ -1,10 +1,13 @@
 package io.github.mattshen.dbkit.cli.commands.definitions;
 
 import io.github.mattshen.dbkit.cli.commands.Command;
+import io.github.mattshen.dbkit.cli.ui.ArgumentsInterrogator;
 import io.github.mattshen.dbkit.cli.utils.Console;
 import io.github.mattshen.dbkit.cli.utils.Utils;
 import io.github.mattshen.dbkit.core.DbAccessor;
 import io.github.mattshen.dbkit.core.utils.JdbcUtils;
+import io.github.mattshen.dbkit.core.utils.RowsExtractor;
+import io.github.mattshen.dbkit.core.utils.RowExtractor;
 
 import java.util.List;
 import java.util.Map;
@@ -21,8 +24,19 @@ public class SQLCommand implements Command {
 
     @Override
     public void execute() {
+        //TODO remove direct dependency on ArgumentsInterrogator
+        String outputFormat = ArgumentsInterrogator.getInstance().getOutputFormat();
+        if ("CSV".equalsIgnoreCase(outputFormat)) {
+            outputCSV();
+        } else {
+            output();
+        }
+    }
+
+    private void output() {
         try {
-            List<Map<String, Object>> rows = DbAccessor.getInstance().query((String)params, JdbcUtils::extractToMap);
+            List<Map<String, Object>> rows = DbAccessor.getInstance()
+                    .query((String) params, (RowExtractor<Map<String, Object>>) JdbcUtils::extractToMap);
 
             if (rows.size() > 0) {
                 String format = Utils.resolveRowPrintFormat(rows);
@@ -43,4 +57,15 @@ public class SQLCommand implements Command {
             e.printStackTrace();
         }
     }
+
+    private void outputCSV() {
+        try {
+            String csv = DbAccessor.getInstance()
+                    .query((String) params, (RowsExtractor<String>) JdbcUtils::extractToCSVRecord);
+            Console.log(csv);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

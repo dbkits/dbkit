@@ -1,5 +1,10 @@
 package io.github.mattshen.dbkit.core.utils;
 
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVPrinter;
+
+import java.io.IOException;
+import java.io.StringWriter;
 import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -66,6 +71,18 @@ public class JdbcUtils {
             }
         }
         return map;
+    }
+
+
+    public static String extractToCSVRecord(ResultSet rs) throws SQLException {
+        try (StringWriter sw = new StringWriter() ) {
+            final CSVPrinter printer = CSVFormat.DEFAULT.withHeader(rs.getMetaData()).print(sw);
+            printer.printRecords(rs);
+            return sw.toString();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
 

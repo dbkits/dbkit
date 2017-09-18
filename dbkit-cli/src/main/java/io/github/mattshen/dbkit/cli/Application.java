@@ -10,7 +10,7 @@ import io.github.mattshen.dbkit.cli.utils.IOUtils;
 public class Application {
 
     public static void main(String[] args) {
-        ArgumentsInterrogator interrogator = ArgumentsInterrogator.parse(args);
+        ArgumentsInterrogator interrogator = ArgumentsInterrogator.getInstance().parse(args);
 
         try {
             CommandFactory cf = CommandFactory.create();

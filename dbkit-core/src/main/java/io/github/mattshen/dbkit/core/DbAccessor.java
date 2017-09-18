@@ -2,7 +2,8 @@ package io.github.mattshen.dbkit.core;
 
 
 import io.github.mattshen.dbkit.core.models.Config;
-import io.github.mattshen.dbkit.core.utils.ResultSetExtractor;
+import io.github.mattshen.dbkit.core.utils.RowsExtractor;
+import io.github.mattshen.dbkit.core.utils.RowExtractor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,7 +31,7 @@ public class DbAccessor {
         conn.close();
     }
 
-    private <T> List<T> convertResultSetToList(ResultSet rs, ResultSetExtractor<T> extractor) throws SQLException {
+    private <T> List<T> convertResultSetToList(ResultSet rs, RowExtractor<T> extractor) throws SQLException {
         List<T> list = new ArrayList<>();
         while (rs.next()) {
             list.add(extractor.extract(rs));
@@ -39,26 +40,33 @@ public class DbAccessor {
     }
 
     public <T> List<T> query(String sql,
-                             ResultSetExtractor<T> extractor) throws SQLException {
+                             RowExtractor<T> extractor) throws SQLException {
         try (Statement s = conn.createStatement();
              ResultSet rs = s.executeQuery(sql)) {
             return convertResultSetToList(rs, extractor);
         }
     }
 
-    public <T> List<T> getSchemas(ResultSetExtractor<T> extractor) throws SQLException {
+    public <T> T query(String sql, RowsExtractor<T> extractor) throws SQLException {
+        try (Statement s = conn.createStatement();
+             ResultSet rs = s.executeQuery(sql)) {
+            return extractor.extract(rs);
+        }
+    }
+
+    public <T> List<T> getSchemas(RowExtractor<T> extractor) throws SQLException {
         try (ResultSet rs = conn.getMetaData().getSchemas()){
             return convertResultSetToList(rs, extractor);
         }
     }
 
-    public <T> List<T> getCatalogs(ResultSetExtractor<T> extractor) throws SQLException {
+    public <T> List<T> getCatalogs(RowExtractor<T> extractor) throws SQLException {
         try (ResultSet rs = conn.getMetaData().getCatalogs()){
             return convertResultSetToList(rs, extractor);
         }
     }
 
-    public <T> List<T> describeTable(String tableName, ResultSetExtractor<T> extractor) throws SQLException {
+    public <T> List<T> describeTable(String tableName, RowExtractor<T> extractor) throws SQLException {
         String currentCatalog = conn.getCatalog();
         String currentSchema = conn.getSchema();
         try (ResultSet rs = conn.getMetaData().getColumns(currentCatalog, currentSchema, tableName, "%")) {
@@ -66,7 +74,7 @@ public class DbAccessor {
         }
     }
 
-    public <T> List<T> getTables(ResultSetExtractor<T> extractor) throws SQLException {
+    public <T> List<T> getTables(RowExtractor<T> extractor) throws SQLException {
         String currentCatalog = conn.getCatalog();
         String currentSchema = conn.getSchema();
         try (ResultSet rs = conn.getMetaData().getTables(currentCatalog, currentSchema, "%", null)) {

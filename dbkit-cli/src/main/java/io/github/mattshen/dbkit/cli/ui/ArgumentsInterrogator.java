@@ -11,12 +11,17 @@ import static java.util.Arrays.asList;
 
 public class ArgumentsInterrogator {
 
+    private static ArgumentsInterrogator instance = new ArgumentsInterrogator();
+
     private static final String optionSpecs = "i";
     private OptionSet options = null;
     private static OptionParser parser = null;
 
-    public static ArgumentsInterrogator parse(String[] args) {
-        final ArgumentsInterrogator argumentsInterrogator = new ArgumentsInterrogator();
+    public static ArgumentsInterrogator getInstance() {
+        return instance;
+    }
+
+    public ArgumentsInterrogator parse(String[] args) {
 
         parser = new OptionParser();
 
@@ -24,12 +29,13 @@ public class ArgumentsInterrogator {
 
         parser.acceptsAll(asList("i", "interactive"), "interactive mode");
 
-        parser.acceptsAll(asList("c", "config", "cfg"), "Cli configuration file").withRequiredArg()
+        parser.acceptsAll(asList("c", "config", "cfg"), "cli configuration file path").withRequiredArg()
                 .describedAs("path")
                 .ofType(File.class);
+        parser.acceptsAll(asList("f", "format"), "output format").withRequiredArg();
 
-        argumentsInterrogator.options = parser.parse(args);
-        return argumentsInterrogator;
+        instance.options = parser.parse(args);
+        return instance;
     }
 
 
@@ -50,7 +56,11 @@ public class ArgumentsInterrogator {
     }
 
     public boolean isInitClient() {
-      return !options.hasOptions() && options.nonOptionArguments().contains("init");
+        return !options.hasOptions() && options.nonOptionArguments().contains("init");
+    }
+
+    public String getOutputFormat() {
+        return (String)options.valueOf("format");
     }
 
 }
